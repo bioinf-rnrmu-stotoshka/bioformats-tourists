@@ -1,7 +1,0 @@
-##fileformat=VCFv4.2
-##fileDate=20231019
-##INFO=<ID=NS,Number=1,Type=Integer,Description="Number of samples">
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
-chr1	100	.	A	T	29.5	PASS	.
-chr1	150	rs123	C	G	45.0	PASS	NS=1
-chr2	200	.	AT	A	30.0	PASS	.
