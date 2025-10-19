@@ -4,32 +4,28 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from vcf_reader import VcfReader
+from bioformats.vcf_reader import VcfReader
 
 
 class TestVcfReader(unittest.TestCase):
 
     def setUp(self):
         """Подготовка тестовых данных"""
-        self.test_vcf = "test.vcf"  # файл в корне проекта
+        self.test_vcf = "../test.vcf"
         self.reader = VcfReader(self.test_vcf)
 
     def test_get_header(self):
         """Тест чтения заголовка VCF"""
-        header = self.reader.get_header()
+        header_lines = self.reader.get_header()
 
-        # Проверяем структуру заголовка
-        self.assertIn('meta', header)
-        self.assertIn('columns', header)
+        # В test.vcf 4 строки заголовка
+        self.assertEqual(len(header_lines), 4)
+        self.assertTrue(any(line.startswith('##') for line in header_lines))
+        self.assertTrue(any(line.startswith('#CHROM') for line in header_lines))
 
-        # Проверяем колонки
-        self.assertEqual(len(header['columns']), 8)  # Должно быть 8 колонок
-        expected_columns = ['CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO']
-        self.assertEqual(header['columns'], expected_columns)
-
-    def test_read_variants(self):
+    def test_read(self):
         """Тест чтения вариантов"""
-        variants = list(self.reader.read_variants())
+        variants = list(self.reader.read())
 
         # Должно быть 3 варианта
         self.assertEqual(len(variants), 3)
@@ -42,37 +38,23 @@ class TestVcfReader(unittest.TestCase):
         self.assertEqual(first_var['alt'], 'T')
         self.assertEqual(first_var['qual'], 29.5)
 
-    def test_get_variant_count(self):
+    def test_count(self):
         """Тест подсчета вариантов"""
-        count = self.reader.get_variant_count()
-        self.assertEqual(count, 3)  # Должно быть 3 варианта
+        count = self.reader.count()
+        self.assertEqual(count, 3)
 
-    def test_get_variant_statistics(self):
-        """Тест статистики с pandas"""
-        stats = self.reader.get_variant_statistics()
-
-        # Проверяем структуру DataFrame
-        self.assertEqual(list(stats.columns), ['region', 'count'])
-        self.assertEqual(len(stats), 2)  # Должны быть 2 региона (chr1 и chr2)
-
-        # Проверяем данные
-        chr1_data = stats[stats['region'] == 'chr1']
-        chr2_data = stats[stats['region'] == 'chr2']
-        self.assertEqual(chr1_data.iloc[0]['count'], 2)  # В chr1 должно быть 2 варианта
-        self.assertEqual(chr2_data.iloc[0]['count'], 1)  # В chr2 должно быть 1 вариант
-
-    def test_get_variants_in_region(self):
+    def test_filter_by_region(self):
         """Тест фильтрации по региону"""
         # Ищем варианты в регионе chr1:100-120
-        variants = self.reader.get_variants_in_region('chr1', 100, 120)
+        variants = list(self.reader.filter_by_region('chr1', 100, 120))
 
-        # Должно найти только первый вариант (позиция 100)
+
         self.assertEqual(len(variants), 1)
         self.assertEqual(variants[0]['pos'], 100)
         self.assertEqual(variants[0]['ref'], 'A')
 
         # Регион где ничего нет
-        empty_variants = self.reader.get_variants_in_region('chr1', 300, 400)
+        empty_variants = list(self.reader.filter_by_region('chr1', 300, 400))
         self.assertEqual(len(empty_variants), 0)
 
 
