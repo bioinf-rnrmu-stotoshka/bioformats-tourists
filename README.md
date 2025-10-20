@@ -52,7 +52,9 @@ bioformats sam slice -i sample_data/example.sam --chrom chr1 --start 100 --end 2
 bioformats vcf chromstat -i sample_data/example.vcf
 bioformats vcf slice -i sample_data/example.vcf --chrom chr1 --start 90 --end 150
 ```
-##Документация
+
+## Документация
+
 ```
 Полная документация доступна в папке docs/build/html/
 ```
@@ -72,5 +74,6 @@ bioformats vcf slice -i sample_data/example.vcf --chrom chr1 --start 90 --end 15
  для подробностей.
 
 ```
+
 
 
