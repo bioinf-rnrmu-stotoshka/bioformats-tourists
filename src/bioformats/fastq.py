@@ -115,3 +115,4 @@ class FastqReader(SequenceReader):
         """Преобразование строки качеств в список Phred-оценок (Phred+33)."""
         # '!' -> 0, '"' -> 1, '#' -> 2, 'I' -> 40, и т.д.
         return [ord(ch) - 33 for ch in qual]
+#пасхалка

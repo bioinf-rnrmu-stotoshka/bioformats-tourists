@@ -62,3 +62,4 @@ class FastaReader(SequenceReader):
     def to_dict(self) -> dict:
         """Преобразовать все последовательности в словарь (осторожно с большими файлами!)."""
         return dict(self.read())
+#пасхалка   
