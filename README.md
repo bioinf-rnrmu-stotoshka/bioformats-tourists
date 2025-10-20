@@ -9,4 +9,5 @@
 <img width="203" height="199" alt="Снимок экрана 2025-10-20 в 03 57 16" src="https://github.com/user-attachments/assets/7149c201-0dd6-4d7c-be98-a7678f91fc84" />
 
 <img width="201" height="191" alt="Снимок экрана 2025-10-20 в 03 57 45" src="https://github.com/user-attachments/assets/7ca73840-0cb8-4316-82ac-2b3f34e58f4a" />
-![IMAGE 2025-10-20 03:58:42](https://github.com/user-attachments/assets/481f8bf3-1acb-4384-8518-ca20e9aeb61d)
+
+<img width="201" height="191" alt="Снимок экрана 2025-10-20 в 03 59 11" src="https://github.com/user-attachments/assets/35ea3087-9927-4b28-b320-701e9ca2a185" />
