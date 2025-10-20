@@ -75,5 +75,7 @@ bioformats vcf slice -i sample_data/example.vcf --chrom chr1 --start 90 --end 15
 
 ```
 
+<img width="1229" height="580" alt="Снимок экрана 2025-10-20 в 13 46 44" src="https://github.com/user-attachments/assets/97b11dc0-893f-457b-bba7-2ce190deb8ae" />
+
 
 
