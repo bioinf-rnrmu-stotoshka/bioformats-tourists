@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bioformats package &mdash; BioFormat Tools  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="API Reference" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BioFormat Tools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bioformats package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.cli">bioformats.cli module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.build_parser"><code class="docutils literal notranslate"><span class="pre">build_parser()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.cmd_fasta_stats"><code class="docutils literal notranslate"><span class="pre">cmd_fasta_stats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.cmd_fastq_qc"><code class="docutils literal notranslate"><span class="pre">cmd_fastq_qc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.cmd_sam_chromstat"><code class="docutils literal notranslate"><span class="pre">cmd_sam_chromstat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.cmd_sam_slice"><code class="docutils literal notranslate"><span class="pre">cmd_sam_slice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.cmd_vcf_chromstat"><code class="docutils literal notranslate"><span class="pre">cmd_vcf_chromstat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.cmd_vcf_slice"><code class="docutils literal notranslate"><span class="pre">cmd_vcf_slice()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.sam_df"><code class="docutils literal notranslate"><span class="pre">sam_df()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.cli.vcf_df"><code class="docutils literal notranslate"><span class="pre">vcf_df()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.fasta">bioformats.fasta module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.fasta.FastaReader"><code class="docutils literal notranslate"><span class="pre">FastaReader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.fastq">bioformats.fastq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.fastq.FastqReader"><code class="docutils literal notranslate"><span class="pre">FastqReader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.genomic">bioformats.genomic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.genomic.GenomicDataReader"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.reader">bioformats.reader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.reader.Reader"><code class="docutils literal notranslate"><span class="pre">Reader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.sam">bioformats.sam module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.sam.SamReader"><code class="docutils literal notranslate"><span class="pre">SamReader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.sequences">bioformats.sequences module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.sequences.SequenceReader"><code class="docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats.vcf">bioformats.vcf module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.vcf.VcfReader"><code class="docutils literal notranslate"><span class="pre">VcfReader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bioformats">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.FastaReader"><code class="docutils literal notranslate"><span class="pre">FastaReader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.FastqReader"><code class="docutils literal notranslate"><span class="pre">FastqReader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.GenomicDataReader"><code class="docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.Reader"><code class="docutils literal notranslate"><span class="pre">Reader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.SamReader"><code class="docutils literal notranslate"><span class="pre">SamReader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.SequenceReader"><code class="docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bioformats.VcfReader"><code class="docutils literal notranslate"><span class="pre">VcfReader</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BioFormat Tools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">API Reference</a></li>
+      <li class="breadcrumb-item active">bioformats package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/bioformats.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bioformats-package">
+<h1>bioformats package<a class="headerlink" href="#bioformats-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-bioformats.cli">
+<span id="bioformats-cli-module"></span><h2>bioformats.cli module<a class="headerlink" href="#module-bioformats.cli" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.build_parser">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">build_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArgumentParser</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#build_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.build_parser" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.cmd_fasta_stats">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_fasta_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#cmd_fasta_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.cmd_fasta_stats" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.cmd_fastq_qc">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_fastq_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#cmd_fastq_qc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.cmd_fastq_qc" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.cmd_sam_chromstat">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_sam_chromstat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#cmd_sam_chromstat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.cmd_sam_chromstat" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.cmd_sam_slice">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_sam_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#cmd_sam_slice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.cmd_sam_slice" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.cmd_vcf_chromstat">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_vcf_chromstat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#cmd_vcf_chromstat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.cmd_vcf_chromstat" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.cmd_vcf_slice">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_vcf_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#cmd_vcf_slice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.cmd_vcf_slice" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.main">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.main" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.sam_df">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">sam_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#bioformats.sam.SamReader" title="bioformats.sam.SamReader"><span class="pre">SamReader</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#sam_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.sam_df" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bioformats.cli.vcf_df">
+<span class="sig-prename descclassname"><span class="pre">bioformats.cli.</span></span><span class="sig-name descname"><span class="pre">vcf_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#bioformats.vcf.VcfReader" title="bioformats.vcf.VcfReader"><span class="pre">VcfReader</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/cli.html#vcf_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.cli.vcf_df" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-bioformats.fasta">
+<span id="bioformats-fasta-module"></span><h2>bioformats.fasta module<a class="headerlink" href="#module-bioformats.fasta" title="Link to this heading"></a></h2>
+<p>Наследуется от SequenceReader.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.fasta.FastaReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.fasta.</span></span><span class="sig-name descname"><span class="pre">FastaReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACGTNacgtn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fasta.FastaReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.sequences.SequenceReader" title="bioformats.sequences.SequenceReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></p>
+<p>Класс для работы с FASTA файлами.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fasta.FastaReader.filter_sequences">
+<span class="sig-name descname"><span class="pre">filter_sequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.filter_sequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fasta.FastaReader.filter_sequences" title="Link to this definition"></a></dt>
+<dd><p>Фильтрация последовательностей по длине.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fasta.FastaReader.get_sequence_by_index">
+<span class="sig-name descname"><span class="pre">get_sequence_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.get_sequence_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fasta.FastaReader.get_sequence_by_index" title="Link to this definition"></a></dt>
+<dd><p>Получить последовательность по индексу (начиная с 0).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fasta.FastaReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fasta.FastaReader.read" title="Link to this definition"></a></dt>
+<dd><p>Ленивое чтение FASTA файла с возвратом (seq_id, sequence).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fasta.FastaReader.read_sequences">
+<span class="sig-name descname"><span class="pre">read_sequences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.read_sequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fasta.FastaReader.read_sequences" title="Link to this definition"></a></dt>
+<dd><p>Альтернативное имя для обратной совместимости.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fasta.FastaReader.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fasta.FastaReader.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Преобразовать все последовательности в словарь (осторожно с большими файлами!).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bioformats.fastq">
+<span id="bioformats-fastq-module"></span><h2>bioformats.fastq module<a class="headerlink" href="#module-bioformats.fastq" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.fastq.FastqReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.fastq.</span></span><span class="sig-name descname"><span class="pre">FastqReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACGTNacgtn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fastq.FastqReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.sequences.SequenceReader" title="bioformats.sequences.SequenceReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></p>
+<p>Ридер FASTQ:
+- read()        -&gt; (seq_id, sequence)
+- get_quality_scores(seq_id) -&gt; List[int] (Phred+33)
+- get_average_quality(seq_id) -&gt; float</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fastq.FastqReader.get_average_quality">
+<span class="sig-name descname"><span class="pre">get_average_quality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader.get_average_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fastq.FastqReader.get_average_quality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fastq.FastqReader.get_quality_scores">
+<span class="sig-name descname"><span class="pre">get_quality_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader.get_quality_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fastq.FastqReader.get_quality_scores" title="Link to this definition"></a></dt>
+<dd><p>Вернуть список Phred-оценок для данного seq_id (Phred+33).
+Первый вызов пройдёт по файлу, далее берём из кэша.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.fastq.FastqReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.fastq.FastqReader.read" title="Link to this definition"></a></dt>
+<dd><p>Ленивое чтение FASTQ файла с возвратом (seq_id, sequence).
+Без кэширования: полезно, когда нужен поток.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bioformats.genomic">
+<span id="bioformats-genomic-module"></span><h2>bioformats.genomic module<a class="headerlink" href="#module-bioformats.genomic" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.genomic.</span></span><span class="sig-name descname"><span class="pre">GenomicDataReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.reader.Reader" title="bioformats.reader.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный ридер геномных данных (SAM, VCF и т.п.).
+Наследники должны реализовать read() и get_header().
+Общие методы count(), get_chromosomes(), filter_by_region()
+работают полиморфно для всех потомков.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.count" title="Link to this definition"></a></dt>
+<dd><p>Количество записей (без заголовков).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.filter_by_region">
+<span class="sig-name descname"><span class="pre">filter_by_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.filter_by_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.filter_by_region" title="Link to this definition"></a></dt>
+<dd><p>Фильтрация по координатам (работает для любого формата с полями chrom, pos).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.get_chromosomes">
+<span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.get_chromosomes" title="Link to this definition"></a></dt>
+<dd><p>Список хромосом, найденных в данных (уникальные CHR).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.get_header">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.get_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.get_header" title="Link to this definition"></a></dt>
+<dd><p>Вернуть строки заголовка (например, начинающиеся с &#64; или #).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.get_reference_genome">
+<span class="sig-name descname"><span class="pre">get_reference_genome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.get_reference_genome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.get_reference_genome" title="Link to this definition"></a></dt>
+<dd><p>Вернуть ссылку на референсный геном, если найдено в хедере.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.read">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.read" title="Link to this definition"></a></dt>
+<dd><p>Ленивый генератор записей.
+Для SAM — словари с полями alignment.
+Для VCF — словари с variant information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.to_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.to_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Преобразовать прочитанные записи в DataFrame (для статистики).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.genomic.GenomicDataReader.validate_coordinate">
+<span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.genomic.GenomicDataReader.validate_coordinate" title="Link to this definition"></a></dt>
+<dd><p>Простейшая проверка, что позиция положительна и хромосома есть в наборе.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bioformats.reader">
+<span id="bioformats-reader-module"></span><h2>bioformats.reader module<a class="headerlink" href="#module-bioformats.reader" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.reader.Reader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.reader.</span></span><span class="sig-name descname"><span class="pre">Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/reader.html#Reader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Универсальный базовый ридер с «курсором» (self._fh).
+- Управляет ресурсом (open/close, контекстный менеджер)
+- Даёт итераторы строк (лениво), peek следующей строки,</p>
+<blockquote>
+<div><p>позиционирование (seek/tell), пропуск хедеров и т.д.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Прозрачно работает с .gz (text mode)</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.close" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.iter_chunked">
+<span class="sig-name descname"><span class="pre">iter_chunked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1048576</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.iter_chunked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.iter_chunked" title="Link to this definition"></a></dt>
+<dd><p>Чтение крупными чанками (байты -&gt; строки по splitlines()).
+Полезно для спец. случаев, обычно iter_lines достаточно.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.iter_lines">
+<span class="sig-name descname"><span class="pre">iter_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.iter_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.iter_lines" title="Link to this definition"></a></dt>
+<dd><p>Ленивый генератор строк от текущей позиции.
+Учитывает peek-буфер. Ничего не грузит целиком в память.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.iter_until">
+<span class="sig-name descname"><span class="pre">iter_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_stop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.iter_until"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.iter_until" title="Link to this definition"></a></dt>
+<dd><p>Идём по строкам, пока stop_pred(line) == False.
+Удобно для FASTA (копим до следующего ‘&gt;’ и т.п.).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.open">
+<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.open" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.peek_line">
+<span class="sig-name descname"><span class="pre">peek_line</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.peek_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.peek_line" title="Link to this definition"></a></dt>
+<dd><p>Вернуть следующую строку, не сдвигая курсор (одна строка буферизуется).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.raw" title="Link to this definition"></a></dt>
+<dd><p>Доступ к файловому объекту напрямую (если нужно что-то особенное).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.seek">
+<span class="sig-name descname"><span class="pre">seek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.seek"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.seek" title="Link to this definition"></a></dt>
+<dd><p>Переместить курсор (байты). Сбрасывает peek-буфер.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.skip_while">
+<span class="sig-name descname"><span class="pre">skip_while</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.skip_while"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.skip_while" title="Link to this definition"></a></dt>
+<dd><p>Пропустить строки, пока предикат истинен (например, хедеры SAM/VCF).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.reader.Reader.tell">
+<span class="sig-name descname"><span class="pre">tell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.tell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.reader.Reader.tell" title="Link to this definition"></a></dt>
+<dd><p>Текущая позиция курсора (байты).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bioformats.sam">
+<span id="bioformats-sam-module"></span><h2>bioformats.sam module<a class="headerlink" href="#module-bioformats.sam" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.sam.SamReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.sam.</span></span><span class="sig-name descname"><span class="pre">SamReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sam.SamReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.genomic.GenomicDataReader" title="bioformats.genomic.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<p>Класс для чтения SAM файлов</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sam.SamReader.get_alignment_statistics">
+<span class="sig-name descname"><span class="pre">get_alignment_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader.get_alignment_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sam.SamReader.get_alignment_statistics" title="Link to this definition"></a></dt>
+<dd><p>Статистика по выравниваниям (специфичная для SAM)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sam.SamReader.get_header">
+<span class="sig-name descname"><span class="pre">get_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader.get_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sam.SamReader.get_header" title="Link to this definition"></a></dt>
+<dd><p>Читает заголовок SAM файла</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sam.SamReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sam.SamReader.read" title="Link to this definition"></a></dt>
+<dd><p>Генератор для чтения выравниваний из SAM файла</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bioformats.sequences">
+<span id="bioformats-sequences-module"></span><h2>bioformats.sequences module<a class="headerlink" href="#module-bioformats.sequences" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.sequences.SequenceReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.sequences.</span></span><span class="sig-name descname"><span class="pre">SequenceReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACGTNacgtn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sequences.SequenceReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.reader.Reader" title="bioformats.reader.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный ридер последовательностей.
+Наследники (FastaReader, FastqReader) обязаны реализовать read(),
+который лениво выдаёт пары (seq_id, sequence).</p>
+<p>Общие методы (get_sequence, validate_sequence, count, average_length)
+работают полиморфно для всех наследников.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sequences.SequenceReader.average_length">
+<span class="sig-name descname"><span class="pre">average_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.average_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sequences.SequenceReader.average_length" title="Link to this definition"></a></dt>
+<dd><p>Средняя длина последовательностей (0.0, если пусто).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sequences.SequenceReader.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sequences.SequenceReader.count" title="Link to this definition"></a></dt>
+<dd><p>Количество последовательностей в файле.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sequences.SequenceReader.get_sequence">
+<span class="sig-name descname"><span class="pre">get_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.get_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sequences.SequenceReader.get_sequence" title="Link to this definition"></a></dt>
+<dd><p>Найти и вернуть последовательность по идентификатору (O(n)).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sequences.SequenceReader.read">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sequences.SequenceReader.read" title="Link to this definition"></a></dt>
+<dd><p>Должен лениво возвращать (seq_id, sequence).
+Пример для FASTA: (‘seq1’, ‘ACGT…’)
+Пример для FASTQ: (‘seq1’, ‘ACGT…’)  # качество обрабатывается в наследнике</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.sequences.SequenceReader.validate_sequence">
+<span class="sig-name descname"><span class="pre">validate_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.validate_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.sequences.SequenceReader.validate_sequence" title="Link to this definition"></a></dt>
+<dd><p>Базовая валидация по алфавиту (можно переопределить в наследнике).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bioformats.vcf">
+<span id="bioformats-vcf-module"></span><h2>bioformats.vcf module<a class="headerlink" href="#module-bioformats.vcf" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.vcf.VcfReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.vcf.</span></span><span class="sig-name descname"><span class="pre">VcfReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.vcf.VcfReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.genomic.GenomicDataReader" title="bioformats.genomic.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<p>Класс для чтения VCF файлов</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.vcf.VcfReader.get_header">
+<span class="sig-name descname"><span class="pre">get_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader.get_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.vcf.VcfReader.get_header" title="Link to this definition"></a></dt>
+<dd><p>Читает заголовок VCF файла</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.vcf.VcfReader.get_variant_statistics">
+<span class="sig-name descname"><span class="pre">get_variant_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader.get_variant_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.vcf.VcfReader.get_variant_statistics" title="Link to this definition"></a></dt>
+<dd><p>Статистика по вариантам (специфичная для VCF)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.vcf.VcfReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.vcf.VcfReader.read" title="Link to this definition"></a></dt>
+<dd><p>Генератор для чтения вариантов из VCF файла</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bioformats">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-bioformats" title="Link to this heading"></a></h2>
+<p>bioformats — учебный пакет для чтения и анализа биологических форматов данных:
+FASTA, FASTQ, SAM и VCF.</p>
+<dl>
+<dt>Архитектура:</dt><dd><p>Reader — базовый класс (работа с файлом, курсор, итерация)
+SequenceReader — абстрактный класс для форматов последовательностей
+GenomicDataReader — абстрактный класс для геномных форматов
+FastaReader, FastqReader, SamReader, VcfReader — конкретные реализации</p>
+</dd>
+<dt>Пример:</dt><dd><p>from bioformats import FastaReader</p>
+<dl class="simple">
+<dt>with FastaReader(“sample.fasta”) as r:</dt><dd><dl class="simple">
+<dt>for seq_id, seq in r.read():</dt><dd><p>print(seq_id, len(seq))</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.FastaReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.</span></span><span class="sig-name descname"><span class="pre">FastaReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACGTNacgtn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastaReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.sequences.SequenceReader" title="bioformats.sequences.SequenceReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></p>
+<p>Класс для работы с FASTA файлами.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastaReader.filter_sequences">
+<span class="sig-name descname"><span class="pre">filter_sequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.filter_sequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastaReader.filter_sequences" title="Link to this definition"></a></dt>
+<dd><p>Фильтрация последовательностей по длине.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastaReader.get_sequence_by_index">
+<span class="sig-name descname"><span class="pre">get_sequence_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.get_sequence_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastaReader.get_sequence_by_index" title="Link to this definition"></a></dt>
+<dd><p>Получить последовательность по индексу (начиная с 0).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastaReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastaReader.read" title="Link to this definition"></a></dt>
+<dd><p>Ленивое чтение FASTA файла с возвратом (seq_id, sequence).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastaReader.read_sequences">
+<span class="sig-name descname"><span class="pre">read_sequences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.read_sequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastaReader.read_sequences" title="Link to this definition"></a></dt>
+<dd><p>Альтернативное имя для обратной совместимости.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastaReader.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/bioformats/fasta.html#FastaReader.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastaReader.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Преобразовать все последовательности в словарь (осторожно с большими файлами!).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.FastqReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.</span></span><span class="sig-name descname"><span class="pre">FastqReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACGTNacgtn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastqReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.sequences.SequenceReader" title="bioformats.sequences.SequenceReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></p>
+<p>Ридер FASTQ:
+- read()        -&gt; (seq_id, sequence)
+- get_quality_scores(seq_id) -&gt; List[int] (Phred+33)
+- get_average_quality(seq_id) -&gt; float</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastqReader.get_average_quality">
+<span class="sig-name descname"><span class="pre">get_average_quality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader.get_average_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastqReader.get_average_quality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastqReader.get_quality_scores">
+<span class="sig-name descname"><span class="pre">get_quality_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader.get_quality_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastqReader.get_quality_scores" title="Link to this definition"></a></dt>
+<dd><p>Вернуть список Phred-оценок для данного seq_id (Phred+33).
+Первый вызов пройдёт по файлу, далее берём из кэша.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.FastqReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/fastq.html#FastqReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.FastqReader.read" title="Link to this definition"></a></dt>
+<dd><p>Ленивое чтение FASTQ файла с возвратом (seq_id, sequence).
+Без кэширования: полезно, когда нужен поток.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.</span></span><span class="sig-name descname"><span class="pre">GenomicDataReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.reader.Reader" title="bioformats.reader.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный ридер геномных данных (SAM, VCF и т.п.).
+Наследники должны реализовать read() и get_header().
+Общие методы count(), get_chromosomes(), filter_by_region()
+работают полиморфно для всех потомков.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.count" title="Link to this definition"></a></dt>
+<dd><p>Количество записей (без заголовков).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.filter_by_region">
+<span class="sig-name descname"><span class="pre">filter_by_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.filter_by_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.filter_by_region" title="Link to this definition"></a></dt>
+<dd><p>Фильтрация по координатам (работает для любого формата с полями chrom, pos).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.get_chromosomes">
+<span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.get_chromosomes" title="Link to this definition"></a></dt>
+<dd><p>Список хромосом, найденных в данных (уникальные CHR).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.get_header">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.get_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.get_header" title="Link to this definition"></a></dt>
+<dd><p>Вернуть строки заголовка (например, начинающиеся с &#64; или #).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.get_reference_genome">
+<span class="sig-name descname"><span class="pre">get_reference_genome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.get_reference_genome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.get_reference_genome" title="Link to this definition"></a></dt>
+<dd><p>Вернуть ссылку на референсный геном, если найдено в хедере.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.read">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.read" title="Link to this definition"></a></dt>
+<dd><p>Ленивый генератор записей.
+Для SAM — словари с полями alignment.
+Для VCF — словари с variant information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.to_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.to_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Преобразовать прочитанные записи в DataFrame (для статистики).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.GenomicDataReader.validate_coordinate">
+<span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/bioformats/genomic.html#GenomicDataReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.GenomicDataReader.validate_coordinate" title="Link to this definition"></a></dt>
+<dd><p>Простейшая проверка, что позиция положительна и хромосома есть в наборе.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.Reader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.</span></span><span class="sig-name descname"><span class="pre">Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/reader.html#Reader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Универсальный базовый ридер с «курсором» (self._fh).
+- Управляет ресурсом (open/close, контекстный менеджер)
+- Даёт итераторы строк (лениво), peek следующей строки,</p>
+<blockquote>
+<div><p>позиционирование (seek/tell), пропуск хедеров и т.д.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Прозрачно работает с .gz (text mode)</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.close" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.iter_chunked">
+<span class="sig-name descname"><span class="pre">iter_chunked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1048576</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.iter_chunked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.iter_chunked" title="Link to this definition"></a></dt>
+<dd><p>Чтение крупными чанками (байты -&gt; строки по splitlines()).
+Полезно для спец. случаев, обычно iter_lines достаточно.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.iter_lines">
+<span class="sig-name descname"><span class="pre">iter_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.iter_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.iter_lines" title="Link to this definition"></a></dt>
+<dd><p>Ленивый генератор строк от текущей позиции.
+Учитывает peek-буфер. Ничего не грузит целиком в память.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.iter_until">
+<span class="sig-name descname"><span class="pre">iter_until</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_stop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.iter_until"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.iter_until" title="Link to this definition"></a></dt>
+<dd><p>Идём по строкам, пока stop_pred(line) == False.
+Удобно для FASTA (копим до следующего ‘&gt;’ и т.п.).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.open">
+<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.open" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.peek_line">
+<span class="sig-name descname"><span class="pre">peek_line</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.peek_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.peek_line" title="Link to this definition"></a></dt>
+<dd><p>Вернуть следующую строку, не сдвигая курсор (одна строка буферизуется).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.raw" title="Link to this definition"></a></dt>
+<dd><p>Доступ к файловому объекту напрямую (если нужно что-то особенное).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.seek">
+<span class="sig-name descname"><span class="pre">seek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.seek"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.seek" title="Link to this definition"></a></dt>
+<dd><p>Переместить курсор (байты). Сбрасывает peek-буфер.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.skip_while">
+<span class="sig-name descname"><span class="pre">skip_while</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.skip_while"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.skip_while" title="Link to this definition"></a></dt>
+<dd><p>Пропустить строки, пока предикат истинен (например, хедеры SAM/VCF).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.Reader.tell">
+<span class="sig-name descname"><span class="pre">tell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/bioformats/reader.html#Reader.tell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.Reader.tell" title="Link to this definition"></a></dt>
+<dd><p>Текущая позиция курсора (байты).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.SamReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.</span></span><span class="sig-name descname"><span class="pre">SamReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SamReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.genomic.GenomicDataReader" title="bioformats.genomic.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<p>Класс для чтения SAM файлов</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SamReader.get_alignment_statistics">
+<span class="sig-name descname"><span class="pre">get_alignment_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader.get_alignment_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SamReader.get_alignment_statistics" title="Link to this definition"></a></dt>
+<dd><p>Статистика по выравниваниям (специфичная для SAM)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SamReader.get_header">
+<span class="sig-name descname"><span class="pre">get_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader.get_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SamReader.get_header" title="Link to this definition"></a></dt>
+<dd><p>Читает заголовок SAM файла</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SamReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/sam.html#SamReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SamReader.read" title="Link to this definition"></a></dt>
+<dd><p>Генератор для чтения выравниваний из SAM файла</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.SequenceReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.</span></span><span class="sig-name descname"><span class="pre">SequenceReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ACGTNacgtn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SequenceReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.reader.Reader" title="bioformats.reader.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный ридер последовательностей.
+Наследники (FastaReader, FastqReader) обязаны реализовать read(),
+который лениво выдаёт пары (seq_id, sequence).</p>
+<p>Общие методы (get_sequence, validate_sequence, count, average_length)
+работают полиморфно для всех наследников.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SequenceReader.average_length">
+<span class="sig-name descname"><span class="pre">average_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.average_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SequenceReader.average_length" title="Link to this definition"></a></dt>
+<dd><p>Средняя длина последовательностей (0.0, если пусто).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SequenceReader.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SequenceReader.count" title="Link to this definition"></a></dt>
+<dd><p>Количество последовательностей в файле.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SequenceReader.get_sequence">
+<span class="sig-name descname"><span class="pre">get_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.get_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SequenceReader.get_sequence" title="Link to this definition"></a></dt>
+<dd><p>Найти и вернуть последовательность по идентификатору (O(n)).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SequenceReader.read">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SequenceReader.read" title="Link to this definition"></a></dt>
+<dd><p>Должен лениво возвращать (seq_id, sequence).
+Пример для FASTA: (‘seq1’, ‘ACGT…’)
+Пример для FASTQ: (‘seq1’, ‘ACGT…’)  # качество обрабатывается в наследнике</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.SequenceReader.validate_sequence">
+<span class="sig-name descname"><span class="pre">validate_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/bioformats/sequences.html#SequenceReader.validate_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.SequenceReader.validate_sequence" title="Link to this definition"></a></dt>
+<dd><p>Базовая валидация по алфавиту (можно переопределить в наследнике).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bioformats.VcfReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bioformats.</span></span><span class="sig-name descname"><span class="pre">VcfReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.VcfReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bioformats.genomic.GenomicDataReader" title="bioformats.genomic.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<p>Класс для чтения VCF файлов</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.VcfReader.get_header">
+<span class="sig-name descname"><span class="pre">get_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader.get_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.VcfReader.get_header" title="Link to this definition"></a></dt>
+<dd><p>Читает заголовок VCF файла</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.VcfReader.get_variant_statistics">
+<span class="sig-name descname"><span class="pre">get_variant_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader.get_variant_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.VcfReader.get_variant_statistics" title="Link to this definition"></a></dt>
+<dd><p>Статистика по вариантам (специфичная для VCF)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bioformats.VcfReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/bioformats/vcf.html#VcfReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bioformats.VcfReader.read" title="Link to this definition"></a></dt>
+<dd><p>Генератор для чтения вариантов из VCF файла</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, bioformats-tourists team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
