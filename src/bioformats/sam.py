@@ -1,58 +1,66 @@
-import pandas as pd
-from bioformats.genomic import GenomicDataReader
+# sam.py
+from __future__ import annotations
 from typing import Iterator, Dict, Any
+
+from .genomic import GenomicDataReader
 
 
 class SamReader(GenomicDataReader):
-    """Класс для чтения SAM файлов"""
+    """Класс для чтения SAM файлов."""
 
     def read(self) -> Iterator[Dict[str, Any]]:
         """
-        Генератор для чтения выравниваний из SAM файла
+        Ленивое чтение выравниваний из SAM файла.
+
+        Возвращает словари с ключами:
+          - qname: имя рида
+          - flag:  флаг
+          - chrom: референсная последовательность
+          - pos:   позиция (1-based)
+          - cigar: CIGAR-строка
+          - seq:   нуклеотидная последовательность
         """
-        with open(self.filename, 'r') as file:
-            for line in file:
-                line = line.strip()
-                # Пропускаем строки заголовка и пустые строки
-                if not line or line.startswith('@'):
+        with self:
+            for line in self.iter_lines(strip=True):
+                # пропускаем заголовки и пустые строки
+                if not line or line.startswith("@"):
                     continue
 
-                # Разбиваем строку на поля
-                fields = line.split('\t')
-                if len(fields) >= 11:
-                    # Возвращаем поля выравнивания
-                    yield {
-                        'qname': fields[0],  # имя рида
-                        'flag': int(fields[1]),  # флаги
-                        'chrom': fields[2],  # имя референсной последовательности
-                        'pos': int(fields[3]),  # позиция
-                        'cigar': fields[5],  # CIGAR строка
-                        'seq': fields[9]  # последовательность
-                    }
+                fields = line.split("\t")
+                if len(fields) < 11:
+                    continue
+
+                yield {
+                    "qname": fields[0],
+                    "flag": int(fields[1]),
+                    "chrom": fields[2],
+                    "pos": int(fields[3]),
+                    "cigar": fields[5],
+                    "seq": fields[9],
+                }
 
     def get_header(self) -> list[str]:
-        """Читает заголовок SAM файла"""
-        header_lines = []
-
-        try:
-            with open(self.filename, 'r') as file:
-                for line in file:
-                    if not line.startswith('@'):
-                        break
-                    header_lines.append(line.strip())
-        except FileNotFoundError:
-            print(f"Файл {self.filename} не найден")
-
+        """
+        Вернуть строки заголовка SAM файла (начинаются с '@').
+        """
+        header_lines: list[str] = []
+        with self:
+            for line in self.iter_lines(strip=False):
+                if not line.startswith("@"):
+                    break
+                header_lines.append(line.rstrip("\n"))
         return header_lines
 
-    # Остальные методы УЖЕ ЕСТЬ в GenomicDataReader:
-    # - count() - уже есть
-    # - get_chromosomes() - уже есть
-    # - filter_by_region() - уже есть (работает с полями 'chrom' и 'pos')
-    # - to_dataframe() - уже есть
+    def header_by_group(self) -> dict[str, list[str]]:
+        """
+        Группировка строк заголовка по типу (@HD, @SQ, @RG, @PG и т.п.).
 
-    # Дополнительные специфичные методы можно оставить:
-    def get_alignment_statistics(self) -> pd.DataFrame:
-        """Статистика по выравниваниям (специфичная для SAM)"""
-        return self.to_dataframe().groupby('chrom').size().reset_index(name='count')
-
+        Возвращает словарь:
+            {"HD": [...], "SQ": [...], "RG": [...], "PG": [...], ...}
+        """
+        groups: dict[str, list[str]] = {}
+        for line in self.get_header():
+            if line.startswith("@") and len(line) >= 3:
+                tag = line[1:3]
+                groups.setdefault(tag, []).append(line)
+        return groups
